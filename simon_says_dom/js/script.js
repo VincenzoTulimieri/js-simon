@@ -5,12 +5,7 @@ const countDownElement = document.getElementById('countdown')
 const formElement = document.getElementById('answers-form')
 const instructionsElement = document.getElementById('instructions')
 const ulElement = document.getElementById('numbers-list')
-const inputElement = document.querySelectorAll('input-group')
-console.log(inputElement)
-
-
-
-
+const inputElement = document.getElementById('input-group')
 
 // countdown
 let count = 3
@@ -26,5 +21,23 @@ let countDown = setInterval(function () {
     }
 }, 1000)
 
+// creazioni li element con valore numerico casuale
+for(let i = 0; i < 5; i++){
+    let casualNumbers = number();
+    let listItem = document.createElement('li'); 
+    listItem.innerText = casualNumbers; 
+    ulElement.appendChild(listItem); 
+}
 
+formElement.value
+console.log(formElement.value)
+
+
+
+
+
+// function
+function number() {
+    return Math.floor(Math.random() * 50) + 1;
+}
 
