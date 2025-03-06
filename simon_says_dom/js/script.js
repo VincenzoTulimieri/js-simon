@@ -6,6 +6,12 @@ const formElement = document.getElementById('answers-form')
 const instructionsElement = document.getElementById('instructions')
 const ulElement = document.getElementById('numbers-list')
 const inputElement = document.getElementById('input-group')
+// variabili imput
+const firstInputNumber = document.getElementById('first-number')
+const secondInputNumber = document.getElementById('second-number')
+const thirdInputNumber = document.getElementById('third-number')
+const fourthInputNumber = document.getElementById('fouth-number')
+const fifthtInputNumber = document.getElementById('fifth-number')
 
 // countdown
 let count = 3
@@ -29,11 +35,35 @@ for(let i = 0; i < 5; i++){
     ulElement.appendChild(listItem); 
 }
 
-formElement.value
-console.log(formElement.value)
+// presa dei dati dell'utente
+formElement.addEventListener('submit',function(event){
+    event.preventDefault()
+
+    firstInputNumber.value
+    secondInputNumber.value
+    thirdInputNumber.value
+    fourthInputNumber.value
+    fifthtInputNumber.value
+
+    console.log(firstInputNumber.value)
+    console.log(secondInputNumber.value)
+    console.log(thirdInputNumber.value)
+    console.log(fourthInputNumber.value)
+    console.log(fifthtInputNumber.value)
+
+    if(fifthtInputNumber.value === number() && 
+    secondInputNumber.value === number() && 
+    thirdInputNumber.value === number() && 
+    fourthInputNumber.value === number() && 
+    fifthtInputNumber.value === number() ){
+        console.log('giusto')
+    }else{
+        console.log('numeri sbagliati')
+    }
 
 
-
+    
+})
 
 
 // function
