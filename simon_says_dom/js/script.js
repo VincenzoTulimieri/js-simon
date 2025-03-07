@@ -26,13 +26,23 @@ let countDown = setInterval(function () {
     }
 }, 1000)
 
-// creazioni li element con valore numerico casuale
+// Valore numerico casuale
+const numbers = randomNumber()
+console.log(numbers)
+
+// creazioni li element
+let listItem = '';
+
 for(let i = 0; i < 5; i++){
-    let casualNumbers = number();
-    let listItem = document.createElement('li'); 
-    listItem.innerText = casualNumbers; 
-    ulElement.appendChild(listItem); 
+    const number = numbers[i]
+   listItem += `<li>${number}</li>`
 }
+ulElement.innerHTML = listItem;
+
+
+
+
+
 
 // presa dei dati dell'utente
 formElement.addEventListener('submit',function(event){
@@ -66,7 +76,23 @@ formElement.addEventListener('submit',function(event){
 
 
 // function
-function number() {
-    return Math.floor(Math.random() * 50) + 1;
+function randomNumber() {
+    const result = [];
+
+//   5 numeri random che possono ripetersi
+   for (let i = 0; i < 5; i++) {
+        const randomNumber = Math.floor(Math.random() * 50) + 1;
+        result.push(randomNumber);
+   }
+
+   //5 numeri random unici
+//   while (result.length < tot) {
+//     const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+//     if (!result.includes(randomNumber)) {
+//       result.push(randomNumber);
+//     }
+//   }
+
+   return result 
 }
 
