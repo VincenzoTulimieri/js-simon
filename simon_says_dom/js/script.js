@@ -14,12 +14,11 @@ const fourthInputNumber = document.getElementById('fouth-number')
 const fifthtInputNumber = document.getElementById('fifth-number')
 
 // countdown
-let count = 3
+let count = 10
 countDownElement.innerText = count
 let countDown = setInterval(function () {
-    countDownElement.innerText = count
-    count--
-    if (count === -1) {
+    countDownElement.innerText = --count
+    if (count === 0) {
         ulElement.classList.add('d-none')
         formElement.classList.remove('d-none')
         instructionsElement.innerText = `Inserisci i numeri che ricordi (l'ordine non è importante!)`
