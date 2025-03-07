@@ -5,13 +5,10 @@ const countDownElement = document.getElementById('countdown')
 const formElement = document.getElementById('answers-form')
 const instructionsElement = document.getElementById('instructions')
 const ulElement = document.getElementById('numbers-list')
-const inputElement = document.getElementById('input-group')
-// variabili imput
-const firstInputNumber = document.getElementById('first-number')
-const secondInputNumber = document.getElementById('second-number')
-const thirdInputNumber = document.getElementById('third-number')
-const fourthInputNumber = document.getElementById('fouth-number')
-const fifthtInputNumber = document.getElementById('fifth-number')
+const inputElement = document.querySelectorAll('#answers-form .form-control')
+const messageElement = document.getElementById('message')
+
+
 
 // countdown
 let count = 10
@@ -33,45 +30,62 @@ console.log(numbers)
 // creazioni li element
 let listItem = '';
 
-for(let i = 0; i < 5; i++){
+for (let i = 0; i < 5; i++) {
     const number = numbers[i]
-   listItem += `<li>${number}</li>`
+    listItem += `<li>${number}</li>`
 }
 ulElement.innerHTML = listItem;
 
 
 
 
-
-
 // presa dei dati dell'utente
-formElement.addEventListener('submit',function(event){
+formElement.addEventListener('submit', function (event) {
     event.preventDefault()
 
-    firstInputNumber.value
-    secondInputNumber.value
-    thirdInputNumber.value
-    fourthInputNumber.value
-    fifthtInputNumber.value
+    const userNumber = [];
+    for (let i = 0; i < inputElement.length; i++) {
+        const currentNumber = inputElement[i]
+        const valueNumber = parseInt(currentNumber.value)
 
-    console.log(firstInputNumber.value)
-    console.log(secondInputNumber.value)
-    console.log(thirdInputNumber.value)
-    console.log(fourthInputNumber.value)
-    console.log(fifthtInputNumber.value)
+        //validazione che i numeri inseriti siano corretti e in caso inserirli nell'array
+        if (valueNumber >= 1 && valueNumber <= 50 && !isNaN(valueNumber) && !userNumber.includes(valueNumber)) {
+            userNumber.push(valueNumber);
+        }
+    }
+    console.log(userNumber)
 
-    if(fifthtInputNumber.value === number() && 
-    secondInputNumber.value === number() && 
-    thirdInputNumber.value === number() && 
-    fourthInputNumber.value === number() && 
-    fifthtInputNumber.value === number() ){
-        console.log('giusto')
-    }else{
-        console.log('numeri sbagliati')
+    // validazione che tutti i numeri siano stati inseriti
+    if (userNumber.length !== 5) {
+        messageElement.innerText = 'I numeri inseriti non sono validi'
+        return
+    }
+
+    //verifica dei numeri ricordati
+    const userNumberCorrect = [];
+    for (let i = 0; i < userNumber.length; i++) {
+        let correctNumber = userNumber[i]
+        if (numbers.includes(correctNumber)) {
+            userNumberCorrect.push(correctNumber)
+        }
     }
 
 
-    
+    // stampa in pagina del risultato
+    if (userNumberCorrect.length > 0) {
+        messageElement.classList.remove('text-danger');
+        messageElement.classList.add('text-success');
+        messageElement.innerText = `Complimenti, hai indovinato ${userNumberCorrect.length} numeri; ${userNumberCorrect}`
+
+    } else {
+        messageElement.classList.remove('text-success');
+        messageElement.classList.add('text-danger');
+        messageElement.innerText = `Mi dispiace, non hai indovinato, Riprova`;
+    }
+
+
+
+
 })
 
 
@@ -79,20 +93,20 @@ formElement.addEventListener('submit',function(event){
 function randomNumber() {
     const result = [];
 
-//   5 numeri random che possono ripetersi
-   for (let i = 0; i < 5; i++) {
+    //   5 numeri random che possono ripetersi
+    //    for (let i = 0; i < 5; i++) {
+    //         const randomNumber = Math.floor(Math.random() * 50) + 1;
+    //         result.push(randomNumber);
+    //    }
+
+    //5 numeri random unici
+    while (result.length < 5) {
         const randomNumber = Math.floor(Math.random() * 50) + 1;
-        result.push(randomNumber);
-   }
+        if (!result.includes(randomNumber)) {
+            result.push(randomNumber);
+        }
+    }
 
-   //5 numeri random unici
-//   while (result.length < tot) {
-//     const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-//     if (!result.includes(randomNumber)) {
-//       result.push(randomNumber);
-//     }
-//   }
-
-   return result 
+    return result
 }
 
