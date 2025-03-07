@@ -11,7 +11,7 @@ const messageElement = document.getElementById('message')
 
 
 // countdown
-let count = 10
+let count = 30
 countDownElement.innerText = count
 let countDown = setInterval(function () {
     countDownElement.innerText = --count
